@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <button class="find_btn">find rabbit</button>
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+      <img src="./img/rabbit.png" alt="rabbit" class="rabbit" />
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+      <img src="./img/carrot.png" alt="carrot" class="image" />
+    </div>
+    <script>
+      const rabbit = document.querySelector(".rabbit");
+      const findBtn = document.querySelector(".find_btn");
+      findBtn.addEventListener("click", (event) => {
+        rabbit.scrollIntoView({ behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>
