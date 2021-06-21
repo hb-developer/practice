@@ -1,6 +1,7 @@
 body {
   background-color: black;
-  text-align: center;
+  /* text-align: center; */
+  background-position: center;
 }
 .container {
   display: block;
@@ -15,7 +16,8 @@ body {
 
 .find_btn {
   position: relative;
-  text-align: center;
+  background-position: center;
+  /* text-align: center; */
   margin-right: auto;
   margin-bottom: 30px;
 }
