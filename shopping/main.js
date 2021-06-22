@@ -1,7 +1,6 @@
 const items = document.querySelector(".items");
 const input = document.querySelector(".footer__input");
 const addBtn = document.querySelector(".footer__button");
-
 //
 
 function onAdd() {
@@ -25,7 +24,6 @@ function onAdd() {
 addBtn.addEventListener("click", () => {
   onAdd();
 });
-
 // Enter 이벤트
 input.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
@@ -33,33 +31,57 @@ input.addEventListener("keypress", (event) => {
   }
 });
 
+// delete 버튼
+
+let id = 0;
 // 아이템 생성함수
 function createItem(text) {
   const itemRow = document.createElement("li");
   itemRow.setAttribute("class", "item__row");
+  itemRow.setAttribute("data-id", id);
+  itemRow.innerHTML = `
+          <div class="item">
+            <span class="item__name">${text}</span>
+            <div class="item__delete">
+              <i class="fas fa-trash-alt" data-id=${id}></i>
+            </div>
+          </div>
+          <div class="item__divider"></div>`;
 
-  const item = document.createElement("div");
-  item.setAttribute("class", "item");
+  // const itemRow = document.createElement("li");
+  // itemRow.setAttribute("class", "item__row");
 
-  const itemName = document.createElement("span");
-  itemName.setAttribute("class", "item__name");
-  itemName.textContent = text;
+  // const item = document.createElement("div");
+  // item.setAttribute("class", "item");
 
-  const deleteBtn = document.createElement("button");
-  deleteBtn.setAttribute("class", "item__delete");
+  // const itemName = document.createElement("span");
+  // itemName.setAttribute("class", "item__name");
+  // itemName.textContent = text;
 
-  deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
-  deleteBtn.addEventListener("click", () => {
-    itemRow.remove();
-  });
+  // const deleteBtn = document.createElement("button");
+  // deleteBtn.setAttribute("class", "item__delete");
 
-  const itemDivider = document.createElement("div");
-  itemDivider.setAttribute("class", "item__divider");
+  // deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+  // deleteBtn.addEventListener("click", () => {
+  //   itemRow.remove();
+  // });
 
-  item.appendChild(itemName);
-  item.appendChild(deleteBtn);
-  itemRow.appendChild(item);
-  itemRow.appendChild(itemDivider);
+  // const itemDivider = document.createElement("div");
+  // itemDivider.setAttribute("class", "item__divider");
 
+  // item.appendChild(itemName);
+  // item.appendChild(deleteBtn);
+  // itemRow.appendChild(item);
+  // itemRow.appendChild(itemDivider);
+
+  id++;
   return itemRow;
 }
+
+items.addEventListener("click", (event) => {
+  const id = event.target.dataset.id;
+  if (id) {
+    const itemRow = document.querySelector(`.item__row[data-id="${id}"]`);
+    itemRow.remove();
+  }
+});
