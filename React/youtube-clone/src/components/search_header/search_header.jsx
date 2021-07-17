@@ -1,20 +1,19 @@
-import React, { useRef } from "react";
-import styles from "../search_header/search_header.module.css";
+import styles from './search_header.module.css';
+import React, { useRef } from 'react';
 
 const SearchHeader = ({ onSearch }) => {
   const inputRef = useRef();
-  function onHadnler() {
-    const query = inputRef.current.value;
-    onSearch(query);
-  }
-
+  const handleSearch = () => {
+    const value = inputRef.current.value;
+    onSearch(value);
+  };
   const onClick = () => {
-    onHadnler();
+    handleSearch();
   };
 
-  const onKeyPress = (event) => {
-    if (event.key === "Enter") {
-      onHadnler();
+  const onKeyPress = event => {
+    if (event.key === 'Enter') {
+      handleSearch();
     }
   };
   return (
