@@ -9,7 +9,7 @@ const MsgItem = ({ userId, timestamp, text }) => (
           month: "numeric",
           day: "numeric",
           hour: "2-digit",
-          mintue: "2-digit",
+          minute: "2-digit",
           hour12: true,
         })}
       </sub>
