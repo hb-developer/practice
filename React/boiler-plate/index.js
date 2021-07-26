@@ -52,7 +52,11 @@ app.post("/login", (req, res) => {
       });
   });
   //비밀번호 까지 맞다면 토큰을 생성하기.
-  user.generateToken((err, user) => {});
+  user.generateToken((err, user) => {
+    if (err) return res.status(400).send(err);
+
+    //토큰을 저장한다 어디에?
+  });
 });
 
 app.listen(port, () => {
