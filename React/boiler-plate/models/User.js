@@ -64,16 +64,16 @@ userSchema.methods.generateToken = function (cb) {
   var user = this;
 
   //jsonwebtoken 을 이용해 token 생성하기
-  var token = jwt.sign(user.id, "secretToken");
+  var token = jwt.sign(user.id.toHexString(), "secretToken");
   //user.id + 'secretToken = token
   // ->
   // 'secretToken ->user.id
 
   user.token = token;
-  user.save(function (err,user)){
-    if(err) return cb(err)
-    cb(null,user)
-  }
+  user.save(function (err, user) {
+    if (err) return cb(err);
+    cb(null, user);
+  });
 };
 
 const User = mongoose.model("User", userSchema);
