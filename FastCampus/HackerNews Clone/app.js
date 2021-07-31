@@ -6,8 +6,15 @@ const root = document.querySelector("#root");
 const ul = document.createElement("ul");
 root.appendChild(ul);
 
-ajax.open("GET", NEWS_URL, false);
-ajax.send();
+function getData(path) {
+  ajax.open("GET", path, false);
+  ajax.send();
+
+  return JSON.parse(ajax.response);
+}
+
+const newsFeed = getData(NEWS_URL);
+console.log(newsFeed);
 
 addEventListener("hashchange", function () {
   const span = document.createElement("span");
@@ -16,24 +23,23 @@ addEventListener("hashchange", function () {
   let hash = window.location.hash;
   hash = hash.slice(1);
   console.log(hash);
-  ajax.open("GET", ITEM_URL.replace("@id", hash), false);
-  ajax.send();
 
-  const ItemFeed = JSON.parse(ajax.response);
+  const ItemFeed = getData(ITEM_URL.replace("@id", hash));
   h1.innerHTML = ItemFeed.title;
   span.appendChild(h1);
   root.appendChild(span);
 });
 
-const newsFeed = JSON.parse(ajax.response);
-console.log(newsFeed);
-
 for (let i = 0; i < 10; i++) {
-  const li = document.createElement("li");
-  const a = document.createElement("a");
-  a.innerHTML = `${newsFeed[i].title} (${newsFeed[i].comments_count})`;
+  const div = document.createElement("div");
 
-  a.href = `#${newsFeed[i].id}`;
-  li.appendChild(a);
-  ul.appendChild(li);
+  div.innerHTML = `
+  <li>
+    <a href=#${newsFeed[i].id}>
+      ${newsFeed[i].title} (${newsFeed[i].comments_count})
+    </a>
+  </li>
+  `;
+
+  ul.appendChild(div.firstElementChild);
 }
